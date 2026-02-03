@@ -17,53 +17,60 @@ background: linear-gradient(135deg, #ff6a88, #ff99ac);
 
 .card {
 background: white;
-width: 340px;
-padding: 35px;
-border-radius: 20px;
+width: 360px;
+padding: 40px 30px;
+border-radius: 22px;
 text-align: center;
-box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+box-shadow: 0 18px 40px rgba(0,0,0,0.25);
 }
 
 h1 {
 color: #ff3d67;
 font-size: 24px;
-margin-bottom: 30px;
+margin-bottom: 35px;
 }
 
-.buttons {
-position: relative;
-width: 300px;
-height: 120px;
-margin: auto;
-}
-
-button {
-padding: 12px 26px;
-font-size: 16px;
-border-radius: 30px;
-border: none;
-cursor: pointer;
-transition: 0.2s ease;
+/* YES */
+.yes-row {
+margin-bottom: 35px;
 }
 
 #yesBtn {
 background: #ff3d67;
 color: white;
-position: absolute;
-left: 20px;
+padding: 14px 40px;
+font-size: 18px;
+border-radius: 35px;
+border: none;
+cursor: pointer;
+}
+
+/* NO playground */
+.no-area {
+position: relative;
+height: 140px;
 }
 
 #noBtn {
-background: #e0e0e0;
-color: #444;
 position: absolute;
-left: 180px;
+left: 110px;
+top: 50px;
+background: #e5e5e5;
+color: #444;
+padding: 14px 34px;
+font-size: 16px;
+border-radius: 35px;
+border: none;
+cursor: default;
 }
 
-img {
+/* GIF smoothness */
+.result img {
 width: 100%;
-border-radius: 15px;
-margin-top: 15px;
+max-width: 260px;
+border-radius: 16px;
+margin-top: 20px;
+image-rendering: auto;
 }
 </style>
 </head>
@@ -73,30 +80,45 @@ margin-top: 15px;
 <div class="card" id="card">
 <h1>Will you be my Valentine? 💖</h1>
 
-<div class="buttons">
+<div class="yes-row">
 <button id="yesBtn" onclick="yesClicked()">Yes 😍</button>
-<button id="noBtn" onmouseover="moveNo()">No 🙈</button>
+</div>
+
+<div class="no-area" id="noArea">
+<button id="noBtn">No 🙈</button>
 </div>
 </div>
 
 <script>
-function moveNo() {
 const noBtn = document.getElementById("noBtn");
+const area = document.getElementById("noArea");
 
-const maxX = 220;
-const maxY = 70;
+noBtn.addEventListener("mouseenter", () => {
+noBtn.style.pointerEvents = "none";
 
-const randomX = Math.random() * maxX;
-const randomY = Math.random() * maxY;
+const areaRect = area.getBoundingClientRect();
+const btnRect = noBtn.getBoundingClientRect();
 
-noBtn.style.left = randomX + "px";
-noBtn.style.top = randomY + "px";
-}
+const x = Math.random() * (areaRect.width - btnRect.width);
+const y = Math.random() * (areaRect.height - btnRect.height);
+
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+
+setTimeout(() => {
+noBtn.style.pointerEvents = "auto";
+}, 120);
+});
 
 function yesClicked() {
 document.getElementById("card").innerHTML = `
 <h1>Best decision ever 💖</h1>
-<img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Love Gif">
+<div class="result">
+<img
+src="https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif"
+alt="Love celebration"
+loading="eager">
+</div>
 `;
 }
 </script>
