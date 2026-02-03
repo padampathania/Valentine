@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine ❤️</title>
+
+<style>
+body {
+background: linear-gradient(135deg, #ff6a88, #ff99ac);
+font-family: 'Segoe UI', sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+
+.card {
+background: white;
+padding: 35px;
+border-radius: 18px;
+text-align: center;
+width: 320px;
+box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+color: #ff3d67;
+}
+
+.buttons {
+margin-top: 25px;
+position: relative;
+height: 100px;
+}
+
+button {
+padding: 12px 24px;
+font-size: 16px;
+border-radius: 25px;
+border: none;
+cursor: pointer;
+}
+
+#yesBtn {
+background: #ff3d67;
+color: white;
+}
+
+#noBtn {
+background: #ddd;
+color: #444;
+position: absolute;
+left: 160px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+<h1>Will you be my Valentine? 💕</h1>
+
+<div class="buttons">
+<button id="yesBtn" onclick="showLove()">Yes 😍</button>
+<button id="noBtn" onmouseover="moveNo()">No 🙈</button>
+</div>
+</div>
+
+<script>
+function moveNo() {
+const noBtn = document.getElementById("noBtn");
+const maxX = 200;
+const maxY = 60;
+
+const randomX = Math.random() * maxX;
+const randomY = Math.random() * maxY;
+
+noBtn.style.left = randomX + "px";
+noBtn.style.top = randomY + "px";
+}
+
+function showLove() {
+document.getElementById("card").innerHTML = `
+<h1>Best decision ever 💖</h1>
+<img src="https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif"
+alt="Love Gif"
+style="width:100%; border-radius:15px; margin-top:15px;">
+`;
+}
+</script>
+
+</body>
+</html>
